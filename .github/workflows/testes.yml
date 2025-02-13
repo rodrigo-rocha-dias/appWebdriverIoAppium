@@ -17,8 +17,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Debug BrowserStack Credentials
-        run: echo "BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}, BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_ACCESS_KEY }}"
-      
+        run: |
+          echo "BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}"
+          echo "BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_ACCESS_KEY }}"
+
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,11 +30,10 @@ jobs:
         run: npm install
       
       - name: Definir credenciais do BrowserStack
-        env:
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-        run: echo "Credenciais configuradas"
-      
+        run: |
+          echo "BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}" >> $GITHUB_ENV
+          echo "BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_ACCESS_KEY }}" >> $GITHUB_ENV
+
       - name: Executar testes WebdriverIO
         run: npx wdio wdio.conf.js
 
