@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
+
+      - name: Debug BrowserStack Credentials
+        run: echo "BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}, BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_ACCESS_KEY }}"
       
       - name: Configurar Node.js
         uses: actions/setup-node@v4
