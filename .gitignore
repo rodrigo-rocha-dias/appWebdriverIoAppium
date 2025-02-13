@@ -1,0 +1,43 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# WebdriverIO & Appium logs
+allure-results/
+allure-report/
+logs/
+wdio.log
+
+# IDE e sistema operacional
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Configurações específicas
+config/local-*.js
+.env
+.env.local
+.env.*
+
+# Arquivos temporários
+tmp/
+*.tmp
+*.bak
+
+# Relatórios HTML e outros
+reports/
+*.html
+*.xml
+*.json
+
+# Emulador Android
+*.apk
+*.keystore
+
+# BrowserStack
+browserstack.json
