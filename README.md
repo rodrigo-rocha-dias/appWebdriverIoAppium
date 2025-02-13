@@ -2,11 +2,23 @@
 
 Este repositório contém a configuração e execução de testes automatizados para aplicativos mobile utilizando WebdriverIO, Appium e BrowserStack.
 
-## 📌 Planejamento
+## 📌 Tecnologias
 - **Linguagem**: JavaScript
 - **Framework**: WebdriverIO + Appium
 - **Ferramenta de Automação**: Appium
 - **Relatório**: Allure Report ou HTML Report
+
+## 📂 Estrutura do Projeto
+O projeto segue o padrão **Page Object Model (POM)** para organização do código e melhor manutenção dos testes.
+
+- **`features/`**: Contém os arquivos `.feature` que definem os cenários de teste em Gherkin.
+  - **`features/login.feature`**: Arquivo de especificação do teste.
+- **`features/step-definitions/`**: Implementação dos passos dos testes definidos nos arquivos `.feature`.
+  - **`features/step-definitions/steps.js`**: Implementação das etapas de teste.
+- **`features/pageobjects/`**: Camada que abstrai a interação com a interface do usuário.
+  - **`features/pageobjects/login.page.js`**: Classe contendo os métodos da tela de login.
+- **`features/elements/`**: Define os elementos da interface, facilitando a manutenção do código.
+  - **`features/elements/login.elements.js`**: Mapeamento dos elementos da tela de login.
 
 ## 🚀 Instalação e Configuração
 
@@ -148,18 +160,18 @@ Capabilities:
 services: ['browserstack'],
 user: process.env.BROWSERSTACK_USERNAME,
 key: process.env.BROWSERSTACK_ACCESS_KEY,
-capabilities: [{
-    platformName: "Android",
-    "appium:deviceName": "Google Pixel 6",
-    "appium:platformVersion": "12.0",
-    "appium:automationName": "UiAutomator2",
-    "appium:app": "bs://08a17866d26d781a7b92efdf06933aff2fc6aecf",
-    "bstack:options": {
-        projectName: "VodQA",
-        buildName: "Teste WebdriverIO",
-        sessionName: "Primeiro Teste"
-    }
-}]
+    capabilities: [{
+        platformName: "Android",
+        "appium:deviceName": "Google Pixel 6",
+        "appium:platformVersion": "12.0",
+        "appium:automationName": "UiAutomator2",
+        "appium:app": "bs://08a17866d26d781a7b92efdf06933aff2fc6aecf",
+        "bstack:options": {
+            projectName: "VodQA",
+            buildName: "Teste WebdriverIO",
+            sessionName: "Teste via Github Actions",
+        }
+    }]
 ```
 
 ### 2️⃣ Instalar o serviço do BrowserStack
@@ -196,6 +208,3 @@ allure open allure-report
 
 ## 🏁 Conclusão
 Este projeto cobre a configuração e execução de testes automatizados mobile com WebdriverIO, Appium e integração com BrowserStack. Siga os passos acima para rodar os testes com sucesso!
-
-🚀 **Happy Testing!**
-
