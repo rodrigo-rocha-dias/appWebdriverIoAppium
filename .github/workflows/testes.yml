@@ -1,0 +1,41 @@
+name: Testes Automatizados Mobile
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      
+      - name: Instalar dependências
+        run: npm install
+      
+      - name: Definir credenciais do BrowserStack
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: echo "Credenciais configuradas"
+      
+      - name: Executar testes WebdriverIO
+        run: npx wdio wdio.conf.js
+
+      - name: Upload de relatórios Allure (opcional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results

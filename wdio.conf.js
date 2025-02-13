@@ -1,5 +1,4 @@
 exports.config = {
-    // runner: 'local',
     // port: 4723,
     runner: 'local',
     hostname: 'hub-cloud.browserstack.com',
