@@ -1,4 +1,4 @@
-export const config = {
+module.exports = {
     runner: 'local',
     specs: ['./test/specs/**/*.js'],
     maxInstances: 1,
