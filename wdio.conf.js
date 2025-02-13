@@ -1,6 +1,16 @@
 exports.config = {
+    // port: 4723,
     runner: 'local',
-    specs: ['./test/specs/**/*.js'],
+    hostname: 'hub-cloud.browserstack.com',
+    port: 443,
+    path: '/wd/hub',
+    protocol: 'https',
+    user: process.env.BROWSERSTACK_USERNAME,
+    key: process.env.BROWSERSTACK_ACCESS_KEY,
+    specs: [
+        './features/**/*.feature'
+    ],
+    exclude: [],
     maxInstances: 1,
     capabilities: [{
         platformName: "Android",
@@ -10,8 +20,8 @@ exports.config = {
         "appium:app": "bs://08a17866d26d781a7b92efdf06933aff2fc6aecf",
         "bstack:options": {
             projectName: "VodQA",
-            buildName: `Teste WebdriverIO - ${new Date().toISOString()}`, // Adiciona timestamp no build
-            sessionName: "Primeiro Teste"
+            buildName: "Teste WebdriverIO",
+            sessionName: "Teste via Github Actions",
         }
     }],
     // capabilities: [{
@@ -27,18 +37,25 @@ exports.config = {
     // }],
     logLevel: 'info',
     bail: 0,
-    baseUrl: 'http://localhost',
-    waitforTimeout: 10000,
-    connectionRetryTimeout: 90000,
+    waitforTimeout: 30000,
+    connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     services: ['browserstack'],
-    user: process.env.BROWSERSTACK_USERNAME,
-    key: process.env.BROWSERSTACK_ACCESS_KEY,
-    framework: 'mocha',
-    reporters: ['spec'],
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 60000
+    framework: 'cucumber',
+    reporters: ['spec', ['allure', { outputDir: 'allure-results' }]],
+    cucumberOpts: {
+        require: ['./features/step-definitions/steps.js'],
+        backtrace: false,
+        requireModule: [],
+        dryRun: false,
+        failFast: false,
+        name: [],
+        snippets: true,
+        source: true,
+        strict: false,
+        tagExpression: '',
+        timeout: 60000,
+        ignoreUndefinedDefinitions: false
     },
 
     /**
