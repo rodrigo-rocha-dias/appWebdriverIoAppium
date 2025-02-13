@@ -34,6 +34,7 @@ reports/
 *.html
 *.xml
 *.json
+!package.json
 
 # Emulador Android
 *.apk
