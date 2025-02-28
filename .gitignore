@@ -37,7 +37,7 @@ reports/
 !package.json
 
 # Emulador Android
-*.apk
+# *.apk
 *.keystore
 
 # BrowserStack
